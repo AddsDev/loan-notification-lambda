@@ -5,7 +5,9 @@
     "main": "src/handler.js",
     "type": "commonjs",
     "scripts": {
-        "test": "jasmine"
+        "test": "jasmine --config=jasmine.json",
+        "coverage": "c8 -r text -r html jasmine --config=jasmine.json",
+        "watch": "nodemon -e js,json -x \"npm test\""
     },
     "dependencies": {
         "@aws-sdk/client-sesv2": "3.888.0",
@@ -14,6 +16,8 @@
         "ajv-formats": "^3.0.1"
     },
     "devDependencies": {
-        "jasmine": "^5.10.0"
+        "c8": "^10.1.3",
+        "jasmine": "^5.10.0",
+        "nodemon": "^3.1.10"
     }
 }

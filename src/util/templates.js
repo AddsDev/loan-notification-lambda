@@ -13,10 +13,10 @@ const htmlManual = (id, reason, payload) =>
   [
     `<p>Hola,</p>`,
     `<p>Resultado de tu evaluación de capacidad para la solicitud <b>${id}</b>: <b>${payload.decision}</b>.</p>`,
-    `<p>Capacidad Máxima: <b>${capacidadMaxima.toLocaleString()}</b>`,
-    ` | Deuda Actual: <b>${deudaMensualActual.toLocaleString()}</b>`,
-    ` | Capacidad Disponible: <b>${capacidadDisponible.toLocaleString()}</b>`,
-    ` | Cuota estimada: <b>${cuotaNuevo.toLocaleString()}</b></p>`,
+    `<p>Capacidad Máxima: <b>${payload.maximunCapacity.toLocaleString()}</b>`,
+    ` | Deuda Actual: <b>${payload.currentMonthlyDebt.toLocaleString()}</b>`,
+    ` | Capacidad Disponible: <b>${payload.capacityAvailable.toLocaleString()}</b>`,
+    ` | Cuota estimada: <b>${payload.feeNew.toLocaleString()}</b></p>`,
     reason ? `<p>Detalle: ${reason}</p>` : "",
     payload.schedule
       ? `<h3>Plan de pagos estimado</h3>
