@@ -1,3 +1,4 @@
+const { LoanStatusValues } = require("../domain/enums/loanStatus");
 const Ajv = require("ajv");
 const ajv = new Ajv({ allErrors: true })
 const addFormats = require("ajv-formats");
@@ -13,7 +14,7 @@ const decisionEventSchema = {
     eventVersion: { type: "integer", minimum: 1 },
     email: {type: "string", format: "email"},
     loanId: { type: "string", format: "uuid" },
-    decision: { type: "string", enum: ["APPROVED", "REJECTED", "REVIEW_MANUAL"] },
+    decision: { type: "string", enum: LoanStatusValues },
     reason: { type: ["string", "null"] },
     createdAt: { type: "string", format: "date-time" },
     payload: { type: ["object", "null"] },

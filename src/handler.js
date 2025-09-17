@@ -1,4 +1,5 @@
 const logger = require("./infrastructure/logging/logger");
+const { ErrorFlag } = require("./domain/errors/errorFlag");
 const { validateDecisionEvent } = require("./domain/decisionSchema");
 const SESEmailAdapter = require("./infrastructure/email/SESEmailAdapter");
 const NotifiDecisionUseCase = require("./application/NotifyDecisionUseCase");
@@ -23,11 +24,8 @@ exports.handler = async (event) => {
             messageId: rec.messageId,
             errors: validateDecisionEvent.errors,
           });
-          throw new Error("INVALID_PAYLOAD");
+          throw new Error(ErrorFlag.INVALID_PAYLOAD);
         }
-
-        // Tener presente para posterioridad
-        //const traceId = rec.messageAttributes?.traceId?.stringValue
         
         await usecase.execute({
           loanId: body.loanId,
