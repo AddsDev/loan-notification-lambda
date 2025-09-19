@@ -33,7 +33,7 @@ class NotifyDecisionUseCase {
     switch (decision) {
       case LoanStatus.APPROVED: {
         subject = subjApproved(loanId);
-        html = htmlApproved(loanId);
+        html = htmlManual(loanId, reason ?? null, payload ?? null);
         text = textApproved(loanId);
         break;
       }
@@ -56,7 +56,7 @@ class NotifyDecisionUseCase {
         throw new Error(ErrorFlag.UNSUPPORTED_DECISION);
       }
     }
-    logger.trace("Send email SES", fields);
+    logger.trace("Send email SES", fields, subject, text,html);
 
     await this.emailPort.send({
       to: email,
